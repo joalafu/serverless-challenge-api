@@ -50,7 +50,7 @@ functions:
     description: Get Employee by Id.
     events:
       - http:
-          path: employee/{id}
+          path: employees/{id}
           method: get
           cors:
             origin: "*"
@@ -64,7 +64,7 @@ functions:
     description: Update Employee by Id.
     events:
       - http:
-          path: employee/{id}
+          path: employees/{id}
           method: put
           cors:
             origin: "*"
@@ -78,7 +78,7 @@ functions:
     description: Delete Employee by Id.
     events:
       - http:
-          path: employee/{id}
+          path: employees/{id}
           method: delete
           cors:
             origin: "*"
