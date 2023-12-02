@@ -4,7 +4,7 @@ const AWS = require("aws-sdk");
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 module.exports.deleteEmployeeById = (event, context, callback) => {
-  const employeeDNI = event.pathParameters.id;
+  const employeeDNI = +event.pathParameters.id;
   const params = {
     TableName: `EMPLOYEES`,
     Key: { employeeDNI },

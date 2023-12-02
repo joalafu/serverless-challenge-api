@@ -4,18 +4,23 @@ const AWS = require("aws-sdk");
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 module.exports.updateEmployeeById = (event, context, callback) => {
-  const employeeDNI = event.pathParameters.id;
+  const employeeDNI = +event.pathParameters.id;
   const employee = JSON.parse(event.body);
   const params = {
     TableName: `EMPLOYEES`,
     Key: { employeeDNI },
-    AttributeUpdates: {
-      employeeAge: employee.Age,
-      employeeName: employee.Name,
-      employeePosition: employee.Position,
-    },
+    AttributeUpdates: {},
     ReturnValues: "UPDATED_NEW",
   };
+  if (employee.Age) {
+    params.AttributeUpdates.employeeAge = { Value: employee.Age };
+  }
+  if (employee.Name) {
+    params.AttributeUpdates.employeeName = { Value: employee.Name };
+  }
+  if (employee.Position) {
+    params.AttributeUpdates.employeePosition = { Value: employee.Position };
+  }
 
   console.log("Updating Employees table.");
   const onUpdate = (err, data) => {
