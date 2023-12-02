@@ -1,0 +1,98 @@
+org: joalafu
+app: serverless-challenge-api
+service: serverless-challenge-api
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+        - dynamodb:Scan
+      Resource: "*"
+
+resources:
+  Resources:
+    TestKitsDynamoDbTable:
+      Type: "AWS::DynamoDB::Table"
+      DeletionPolicy: Retain
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: "employeeDNI"
+            AttributeType: "N"
+        KeySchema:
+          - AttributeName: "employeeDNI"
+            KeyType: "HASH"
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: EMPLOYEES
+
+functions:
+  addEmployee:
+    handler: api/add.addEmployee
+    memorySize: 128
+    description: Register new Employee.
+    events:
+      - http:
+          path: employees
+          method: post
+          cors:
+            origin: "*"
+  getEmployeeById:
+    handler: api/get.getEmployeeById
+    memorySize: 128
+    description: Get Employee by Id.
+    events:
+      - http:
+          path: employee/{id}
+          method: get
+          cors:
+            origin: "*"
+          request:
+            parameters:
+              paths:
+                id: true
+  updateEmployeeById:
+    handler: api/update.updateEmployeeById
+    memorySize: 128
+    description: Update Employee by Id.
+    events:
+      - http:
+          path: employee/{id}
+          method: put
+          cors:
+            origin: "*"
+          request:
+            parameters:
+              paths:
+                id: true
+  deleteEmployeeById:
+    handler: api/delete.deleteEmployeeById
+    memorySize: 128
+    description: Delete Employee by Id.
+    events:
+      - http:
+          path: employee/{id}
+          method: delete
+          cors:
+            origin: "*"
+          request:
+            parameters:
+              paths:
+                id: true
+  listEmployees:
+    handler: api/list.listEmployees
+    memorySize: 128
+    description: List Employees.
+    events:
+      - http:
+          path: employees/
+          method: get
+          cors:
+            origin: "*"
