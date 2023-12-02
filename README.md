@@ -59,11 +59,11 @@ Deploying serverless-challenge-api to stage dev (us-east-1, "default" provider)
 ✔ Service deployed to stack serverless-challenge-api-project-dev (177s)
 
 endpoints:
-  POST - https://xxxxxxxxxx.execute-api.us-east-1.amazonaws.com/dev/employee
-  GET - https://xxxxxxxxxx.execute-api.us-east-1.amazonaws.com/dev/employee/{id}
-  PUT - https://xxxxxxxxxx.execute-api.us-east-1.amazonaws.com/dev/employee/{id}
-  DELETE - https://xxxxxxxxxx.execute-api.us-east-1.amazonaws.com/dev/employee/{id}
-  GET - https://xxxxxxxxxx.execute-api.us-east-1.amazonaws.com/dev/employees
+  POST - https://{restapi_id}.execute-api.{region}.amazonaws.com/{stage_name}/employee
+  GET - https://{restapi_id}.execute-api.{region}.amazonaws.com/{stage_name}/employee/{id}
+  PUT - https://{restapi_id}.execute-api.{region}.amazonaws.com/{stage_name}/employee/{id}
+  DELETE - https://{restapi_id}.execute-api.{region}.amazonaws.com/{stage_name}/employee/{id}
+  GET - https://{restapi_id}.execute-api.{region}.amazonaws.com/{stage_name}/employees
 ```
 
 Save the url address of the "endpoint" this will be the one used for its invocation.
