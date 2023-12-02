@@ -11,7 +11,7 @@ module.exports.updateEmployeeById = (event, context, callback) => {
     Key: { employeeDNI },
     AttributeUpdates: {
       employeeAge: employee.Age,
-      employeeName: employee.FullName,
+      employeeName: employee.Name,
       employeePosition: employee.Position,
     },
     ReturnValues: "UPDATED_NEW",

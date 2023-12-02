@@ -11,10 +11,10 @@ module.exports.addEmployee = (event, context, callback) => {
     Item: {
       employeeDNI: employee.DNI,
       employeeAge: employee.Age,
-      employeeName: employee.FullName,
+      employeeName: employee.Name,
       employeePosition: employee.Position,
     },
-    ReturnValues: "ALL_NEW",
+    ReturnValues: "ALL_OLD",
   };
 
   console.log("Add Employee table.");
