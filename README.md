@@ -59,11 +59,15 @@ Deploying serverless-challenge-api to stage dev (us-east-1, "default" provider)
 ✔ Service deployed to stack serverless-challenge-api-project-dev (177s)
 
 endpoints:
-  POST - https://{restapi_id}.execute-api.{region}.amazonaws.com/{stage_name}/employee
-  GET - https://{restapi_id}.execute-api.{region}.amazonaws.com/{stage_name}/employee/{id}
-  PUT - https://{restapi_id}.execute-api.{region}.amazonaws.com/{stage_name}/employee/{id}
-  DELETE - https://{restapi_id}.execute-api.{region}.amazonaws.com/{stage_name}/employee/{id}
+  POST - https://{restapi_id}.execute-api.{region}.amazonaws.com/{stage_name}/employees
+  GET - https://{restapi_id}.execute-api.{region}.amazonaws.com/{stage_name}/employees/{id}
+  PUT - https://{restapi_id}.execute-api.{region}.amazonaws.com/{stage_name}/employees/{id}
+  DELETE - https://{restapi_id}.execute-api.{region}.amazonaws.com/{stage_name}/employees/{id}
   GET - https://{restapi_id}.execute-api.{region}.amazonaws.com/{stage_name}/employees
 ```
 
 Save the url address of the "endpoint" this will be the one used for its invocation.
+
+### Invocation
+
+Import the collection "serverless-challenge.postman_collection.json" into postman and perform the tests you need
