@@ -1,10 +1,15 @@
 "use strict";
 
+// The aws-sdk module is imported, and a new instance of AWS.DynamoDB.DocumentClient is created to interact with DynamoDB.
 const AWS = require("aws-sdk");
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
+// The deleteEmployeeById is designed to be used as an AWS Lambda function.
 module.exports.deleteEmployeeById = (event, context, callback) => {
+  // Get pathParameters
   const employeeDNI = +event.pathParameters.id;
+
+  // Definition's parameters for the dynamodb delete method
   const params = {
     TableName: `EMPLOYEES`,
     Key: { employeeDNI },
@@ -12,6 +17,7 @@ module.exports.deleteEmployeeById = (event, context, callback) => {
   };
 
   console.log("Deleting Employees table.");
+  // Callback function for delete method
   const onDelete = (err, data) => {
     if (err) {
       console.log(
@@ -39,5 +45,6 @@ module.exports.deleteEmployeeById = (event, context, callback) => {
     }
   };
 
+  //Call to the delete method
   dynamoDb.delete(params, onDelete);
 };
